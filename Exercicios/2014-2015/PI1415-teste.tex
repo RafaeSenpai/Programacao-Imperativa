@@ -1,0 +1,74 @@
+\documentclass{article}
+ 
+\usepackage[pdftex]{graphicx}
+
+\usepackage[left=15mm,top=0cm,right=2cm,nohead,nofoot]{geometry}
+%\usepackage{pdfsync}
+\usepackage[latin1]{inputenc}
+\author{1º Ano -- LEI/LCC}
+\title{Programação Imperativa}
+\date{17 de Junho de 2015}
+\def\thepage{}
+\def\class#1{}%[#1]}
+
+\begin{document}
+\maketitle
+\section*{Parte A}
+Considere as seguintes definições de tipos:\\[1pt]
+
+\begin{minipage}[t]{.4\linewidth}
+\begin{verbatim}
+typedef struct slist {
+   int valor;
+   struct slist *prox;
+} *LInt;
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{.4\linewidth}
+\begin{verbatim}
+typedef struct nodo {
+   int valor;
+   struct nodo *esq, *dir;
+} *ABin;
+\end{verbatim}
+\end{minipage}
+
+\begin{enumerate}
+\item Apresente uma definição da função pré-definida em C \texttt{char *strstr (char s1[], char s2[])} que determina a posição onde a string \texttt{s2} ocorre em \texttt{s1}. 
+A função deverá retornar \texttt{NULL} caso \texttt{s2} não ocorra em \texttt{s1}.
+
+\item Defina uma função \texttt{int maxInd (int v[], int n)} que, dado um vector \texttt{v} com \texttt{n} inteiros, retorna o índice do maior elemento do vector.
+
+\item Apresente uma definição da função \texttt{void concat (LInt *a, LInt b)} que acrescenta a lista \verb!b! a \verb!*a!.
+
+\item Defina uma função \texttt{LInt nivel (ABin a, int n)} que, dada uma árvore binária,  constrói uma lista com os valores dos elementos que estão armazenados na árvore ao nível \verb!n! (assuma que a raiz da árvore está ao nível \verb!1!).
+
+\end{enumerate}
+
+\section*{Parte B}
+
+\begin{enumerate}
+\item Escreva um programa que, usando entre outras a função \texttt{maxInd} referida atrás, lê uma sequência de no máximo 100 números inteiros sem repetições e imprime qual o maior número lido, bem como o seu número de ordem.
+
+Note que a fase de leitura deverá terminar quando forem atingidos os 100 números lidos \textbf{ou} quando for lido um número que já tenha sido lido.
+
+\item Considere o seguinte tipo de dados para representar listas de strings:
+  \begin{verbatim}
+     typedef struct strlist {
+          char *string;
+          struct strlist *prox;
+    } *StrList;
+  \end{verbatim}
+  \begin{enumerate}
+     \item Defina uma função \texttt{void unwords (StrList s, char t[], int N)} que, dada uma lista de palavras, preenche o array \verb!t! com as palavras dessa lista, separadas por um espaço. A função deve preencher no máximo \verb!N! caracteres do array \verb!t! e garantir que o último caracter preenchido é o caracter \verb!'\0'!.
+     \item Defina uma função \texttt{int words (char t[], StrList *l)} que dada uma string \verb!t! (terminada com o caracter \verb!'\0'!) contendo várias palavras (as palavras são separadas por um ou mais espaços), coloca em \verb!*l! a lista de strings com as várias palavras desse texto. A função retorna o número de palavras encontradas.
+
+     Os endereços contidos nessa lista devem corresponder a endereços dentro da string de entrada e por isso não deverá ser alocado espaço adicional para armazenar essas palavras.
+  \end{enumerate}
+  \item Defina a função \texttt{int maxuniqueseq (int v[], int N)} que, dado um array \verb!v! com \verb!N! inteiros, determina o tamanho do maior sub-array de \verb!v! sem elementos repetidos.
+
+  Por exemplo, se o array contiver os (10) elementos \texttt{[8,2,2,3,4,1,6,5,1,7]}, por essa ordem, a função deverá retornar \verb!6! (correspondendo ao sub-array \texttt{[2,3,4,1,6,5]}).
+  \end{enumerate}
+
+\end{document}   
+
