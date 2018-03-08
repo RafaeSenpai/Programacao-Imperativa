@@ -1,0 +1,10 @@
+ORDENS DE COMPILAÇÃO
+1º PASSO ->COMPILAÇÃO DOS FICHEIROS SEM LINKAGEM:
+gcc -Wall -c  bigMain.c -o bigMain
+gcc -Wall -c  ficha1.c -o ficha1
+gcc -Wall -c  m_Ficha1.c -o m_Ficha1
+gcc -Wall -c  reRoutingEntreMenus.c -o reRoutingEntreMenus
+
+2º PASSO ->COMPILAÇÃO FAZENDO A LINKAGEM DE TODOS
+gcc -Wall bigMain.c ficha1.c m_Ficha1.c reRoutingEntreMenus.c
+
