@@ -569,7 +569,7 @@ char *str2 = malloc(sizeof(char));
 		system("clear");
 		printf("Insira o tamanho do 1º array:\n");
 		scanf("%d",&x);
-		printf("\nPreencha o array de inteiros!\n");
+		printf("\nPreencha o array de inteiros de forma ordenada!\n");
 		array1 = malloc(x*sizeof(int));
 		y=0;
 		while(y<x){
@@ -581,7 +581,7 @@ char *str2 = malloc(sizeof(char));
 		system("clear");
 		printf("Insira o tamanho do 2º array:\n");
 		scanf("%d",&z);
-		printf("\nPreencha o array de inteiros!\n");
+		printf("\nPreencha o array de inteiros de forma ordenada!\n");
 		array2 = malloc(z*sizeof(int));
 		y=0;
 		while(y<z){
@@ -601,8 +601,111 @@ char *str2 = malloc(sizeof(char));
 			printf("%d ",array2[y]);
 		}
 		printf("]\n\n");
-		printf("O numero de elementos em comum entre dois arrays inseridos é %d elementos\n",comunsOrd(array1,x,array2,z));
+		printf("O numero de elementos em comum entre dois arrays ordenados inseridos é %d elementos\n",comunsOrd(array1,x,array2,z));
 		routingQuestion(6);	
+
+
+
+		case(36): 
+		system("clear");
+		printf("Insira o tamanho do 1º array:\n");
+		scanf("%d",&x);
+		printf("\nPreencha o array de inteiros(de forma não ordenada)!\n");
+		array1 = malloc(x*sizeof(int));
+		y=0;
+		while(y<x){
+			scanf("%d",&num);
+			array1[y]=num;
+			y++;
+		}
+
+		system("clear");
+		printf("Insira o tamanho do 2º array:\n");
+		scanf("%d",&z);
+		printf("\nPreencha o array de inteiros(de forma não ordenada)!\n");
+		array2 = malloc(z*sizeof(int));
+		y=0;
+		while(y<z){
+			scanf("%d",&num);
+			array2[y]=num;
+			y++;
+		}
+		system("clear");
+		printf("Os arrays inseridos são:\n");
+		printf("ARRAY-1: [");
+		for(y=0;y<x;y++){
+			printf("%d ",array1[y]);
+		}
+
+		printf("]\nARRAY-2: [");
+		for(y=0;y<z;y++){
+			printf("%d ",array2[y]);
+		}
+		printf("]\n\n");
+		printf("O numero de elementos em comum entre dois arrays inseridos é %d elementos\n",comuns(array1,x,array2,z));
+		routingQuestion(6);	
+
+
+
+		case(37): 
+		system("clear");
+		printf("Insira o tamanho do 1º array:\n");
+		scanf("%d",&x);
+		printf("\nPreencha o array de inteiros:\n");
+		array1 = malloc(x*sizeof(int));
+		y=0;
+		while(y<x){
+			scanf("%d",&num);
+			array1[y]=num;
+			y++;
+		}
+		system("clear");
+		printf("]\nARRAY: [");
+		for(y=0;y<z;y++){
+			printf("%d ",array2[y]);
+		}
+		printf("]\n\n");
+		printf("O indice no array onde se encontra o menor elemento no array inserido é: %d",minInd(array1,x,array2,z));
+		routingQuestion(6);	
+
+
+
+		case(38): 
+		system("clear");
+		printf("Insira o tamanho do 1º array:\n");
+		scanf("%d",&x);
+		printf("\nPreencha o array de inteiros:\n");
+		array1 = malloc(x*sizeof(int));
+		y=0;
+		while(y<x){
+			scanf("%d",&num);
+			array1[y]=num;
+			y++;
+		}
+		system("clear");
+		printf("]\nARRAY: [");
+		for(y=0;y<z;y++){
+			printf("%d ",array1[y]);
+		}
+		printf("]\n\n");
+		printf("O array composto pelas somas acumuladas dos elementos do array inserido é:\n");
+		somasAc(array2,array1,x)
+		routingQuestion(6);	
+
+
+
+		case(39): //------------------------------------------FAZER COM MAIS TEMPO A INTERFACE PARA O UTILIZADOR INSERIR A MATRIZ
+		printf("FALTA FAZER A INTERFACE!\n");
+		getchar();
+		routingQuestion(6);	
+
+
+
+		case(46): //------------------------------------------FAZER COM MAIS TEMPO A INTERFACE PARA O UTILIZADOR INSERIR A MATRIZ
+		printf("FALTA FAZER A INTERFACE!\n");
+		getchar();
+		routingQuestion(6);	
+
 
 
 

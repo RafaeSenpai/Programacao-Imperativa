@@ -34,4 +34,11 @@ int maxCresc();
 int elimRep();
 int elimRepOrd();
 int comunsOrd();
+int comuns();
+int minInd();
+void somaAc();
+int triSup();
+
+
+int cardinalMSet();
 

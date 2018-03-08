@@ -927,3 +927,144 @@ int x=0;
 
 	return count1;
 }
+
+/*exercicio36*/ //<-----------------OBS: EXATAMENTE IGUAL Á FUNÇÃO AUXILIAR DO EXERCICO ANTERIOR APENAS MUDA O NOME DA FUNÇÃO
+int existe3(int x,int v[], int tam){
+int i;
+
+	for(i=0;i<tam;i++){
+		if(v[i]==x){
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int comuns (int a[], int na, int b[], int nb){
+int count1 = 0;
+int count2 = 0;
+int i;
+int x=0;
+
+	if(na>nb){
+		for(i=0;i<na;i++){
+			if(existe3(a[i],b,nb)==1){
+				count1++;
+			}
+		}
+	}else if(na<nb){
+		for(i=0;i<na;i++){
+			if(existe3(a[i],b,nb)>0){
+				count1=count1+existe3(a[i],b,nb);
+			}
+		}
+	}else{
+		for(i=0;i<na;i++){
+			if(existe3(a[i],b,nb)>0){
+				count1=count1+existe3(a[i],b,nb);
+			}
+		}
+		for(i=0;i<nb;i++){
+			if(existe3(b[i],a,na)>0){
+				count2=count1+existe3(a[i],b,nb);
+			}
+		}
+		
+		if(count1<=count2){
+			return count1;
+		}else{
+			return count2;
+		}	
+	}
+
+	return count1;
+}
+
+
+/*exercicio37*/
+int minInd (int v[], int n){
+int i;
+int val = v[0];
+int ind = 0;
+
+	for(i=0;i<n;i++){
+		if(val>v[i]){
+			val=v[i];
+			ind=i;
+		}
+	}
+	return ind;
+}
+
+
+
+/*exercicio38*/
+void somasAc (int v[], int Ac [], int N){
+int i;
+Ac[0]=v[0];
+
+	for(i=1;i<N;i++){
+		Ac[i]=Ac[i-1]+v[i];
+	}
+
+	printf("]\nARRAY: [");//<--------Comentar todo o codigo deste ponto para baixo para que nos teste online nao seja impressa informação a mais.
+	for(y=0;y<N;y++){//              Esta parte do codigo existe apenas para ser apresentado o array resultado localhost.
+		printf("%d ",array2[y]);
+	}
+	printf("]\n");
+}
+
+
+
+/*exercicio39*/
+int triSup (int N, float m [N][N]){ //-------------------------------------------------------NÃO ESTÁ COMPLETAMENTE FUNCIONAL, APENAS PASSA EM METADE DOS TESTES
+int i,j;
+
+	for(i=0;i<N;i++){
+		for(j=0;j<=i;j++){
+			if((m [i][j])!=0){
+        	return 1; //caso não seja triangular
+			}
+		}
+	}
+	return 0;
+}
+
+
+/*exercicio42*///--------------------------------------------------NÃO ESToU A PERCEBER O PROBLEMA
+int unionSet (int N, int v1[N], int v2[N], int r[N]){
+int i,j;
+
+	for(i=0;i<N;i++){
+		v1[i]=v1[i]+v2[i];
+	}
+
+	for(i=0;i<N;i++){
+		r[i]=0;
+	}
+	
+	for(i=0;i<N;i++){
+		j=0;
+		while(j<v[i]){
+			j++;
+		}
+		r[j]=1;
+	}
+}
+
+
+
+/*exercicio46*/ //---------------------------FUNCIONAL
+int cardinalMSet (int N, int v[N]){
+int numElems=0;
+int i;
+
+	for(i=0;i<N;i++){
+		if(v[i]!=0){
+			numElems+=v[i];
+		}
+	}
+	return numElems;
+}
+
+
