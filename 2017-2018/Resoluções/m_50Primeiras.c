@@ -6,6 +6,15 @@
 #include "bigMain.h" /*quando se quer incluir uma API propria usa-se as aspas ao contrario <API's padrao>*/
 #include "m_50Primeiras.h" 
 #include "50primeiras.h"
+typedef enum movimento {
+		Norte, 
+		Oeste, 
+		Sul,
+		Este} Movimento;
+
+typedef struct posicao {
+	int x, y;
+} Posicao;
 
 
 /*MENU DAS 50 PERGUNTAS*/
@@ -20,6 +29,8 @@ char s1[30];
 char s2[30];
 char *str1 = malloc(sizeof(char));
 char *str2 = malloc(sizeof(char));
+Posicao inicial,final;
+int px,py;
 
 
 	printf("Qual o exercicio dos 50 primeiros exercicios que pretende executar?\n");
@@ -689,7 +700,7 @@ char *str2 = malloc(sizeof(char));
 		}
 		printf("]\n\n");
 		printf("O array composto pelas somas acumuladas dos elementos do array inserido é:\n");
-		somasAc(array2,array1,x)
+		somasAc(array2,array1,x);
 		routingQuestion(6);	
 
 
@@ -708,6 +719,31 @@ char *str2 = malloc(sizeof(char));
 
 
 
+		case(48): //------------------------------------------FAZER COM MAIS TEMPO A INTERFACE PARA O UTILIZADOR INSERIR A MATRIZ
+		printf("Insira a posição inicial do robo\nEixo dos xx:");
+		scanf("%d",&px);
+		inicial.x=px;
+		printf("Insira a posição inicial do robo\nEixo dos yy:");
+		scanf("%d",&py);
+		inicial.y=py;
+
+		printf("Insira a posição final do robo\nEixo dos xx:");
+		scanf("%d",&px);
+		final.x=px;
+		printf("Insira a posição final do robo\nEixo dos yy:");
+		scanf("%d",&py);
+		final.y=py;
+
+		printf("Insira o numero máximo de instruções que o robo tem até chegar ao distino: ");
+		scanf("%d",&z);
+		system("clear");
+		printf("Coordenada inicial: (%d,%d)\n",inicial.x,inicial.y);
+		printf("Coordenada final: (%d,%d)\n",final.x,final.y);
+		Movimento trajeto[100];
+		//trajeto = malloc(100*sizeof(Movimento));
+		printf("\nO numero de comandos necessários para chegar ao destino é(-1 caso supere o máximo permitido): %d",caminho(inicial,final,trajeto,z));
+		getchar();
+		routingQuestion(6);	
 
 		/* ... */
 

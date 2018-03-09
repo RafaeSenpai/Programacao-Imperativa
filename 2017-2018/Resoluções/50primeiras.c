@@ -132,8 +132,8 @@ int tam, i;
 int mystrcmp (char s1[], char s2[]){
 int i,x,y;
 	
-	for(x=0; s1[x]!='\0';x++);
-	for(y=0; s2[y]!='\0';y++);
+	for(x=0; s1[x]!='\0';x++){};
+	for(y=0; s2[y]!='\0';y++){};
 
 		for(i=0; s1[i]!='\0';i++){
 			if(s1[i]<s2[i]){
@@ -415,8 +415,7 @@ int i;
 }
 
 int sufPref (char s1[], char s2[]){
-int j,i,x,tamPrefixo;
-int max = 0;
+int j,i,tamPrefixo;
 i=j=tamPrefixo=0;
 
 	for(i=0;s1[i]!='\0';i++){
@@ -441,7 +440,7 @@ int contaPal (char s[]){
 int count=0;
 int i=0;
 int x;
-    for(x=0;s[x]!='\0';x++);
+    for(x=0;s[x]!='\0';x++){};
     
 	
 	do{
@@ -519,8 +518,8 @@ int i;
 /*exercicio23*/
 int palindroma (char s[]){
 int i, x;
-	for(i=0; s[i]!='\0';i++);
-		i--;
+	for(i=0; s[i]!='\0';i++){};
+	i--;
 
 	for(x=0; x<=i;x++){
 		if(s[x]!=s[i]){
@@ -624,12 +623,12 @@ x=0;
 y=0;
 	for(i=0;i<(na+nb);i++){
 	    if(x==na){/*caso já se tenha chegado ao final do array 'a' mas ainda existam elementos no array 'b' para serem inseridos no array 'R'*/
-	        for(i;i<(na+nb);i++){
+	        for(;i<(na+nb);i++){
 	            r[i]=b[y];
 	            y++;
 	        }
 	    }else if(y==nb){/*caso já se tenha chegado ao final do array 'b' mas ainda existam elementos no array 'a' para serem inseridos no array 'R'*/
-	        for(i;i<(na+nb);i++){
+	        for(;i<(na+nb);i++){
 	            r[i]=a[x];
 	            x++;
 	        }
@@ -661,7 +660,7 @@ y=0;
 /*exercicio28*/
 int crescente (int a[], int i, int j){
 
-	for(i;i<j;i++){
+	for(;i<j;i++){
 		if(a[i]>a[i+1]){
 			return 0;
 		}
@@ -892,7 +891,6 @@ int comunsOrd (int a[], int na, int b[], int nb){
 int count1 = 0;
 int count2 = 0;
 int i;
-int x=0;
 
 	if(na>nb){
 		for(i=0;i<na;i++){
@@ -944,7 +942,6 @@ int comuns (int a[], int na, int b[], int nb){
 int count1 = 0;
 int count2 = 0;
 int i;
-int x=0;
 
 	if(na>nb){
 		for(i=0;i<na;i++){
@@ -1008,8 +1005,8 @@ Ac[0]=v[0];
 	}
 
 	printf("]\nARRAY: [");//<--------Comentar todo o codigo deste ponto para baixo para que nos teste online nao seja impressa informação a mais.
-	for(y=0;y<N;y++){//              Esta parte do codigo existe apenas para ser apresentado o array resultado localhost.
-		printf("%d ",array2[y]);
+	for(i=0;i<N;i++){//              Esta parte do codigo existe apenas para ser apresentado o array resultado localhost.
+		printf("%d ",Ac[i]);
 	}
 	printf("]\n");
 }
@@ -1032,6 +1029,7 @@ int i,j;
 
 
 /*exercicio42*///--------------------------------------------------NÃO ESToU A PERCEBER O PROBLEMA
+/*
 int unionSet (int N, int v1[N], int v2[N], int r[N]){
 int i,j;
 
@@ -1051,7 +1049,7 @@ int i,j;
 		r[j]=1;
 	}
 }
-
+*/
 
 
 /*exercicio46*/ //---------------------------FUNCIONAL
@@ -1068,3 +1066,96 @@ int i;
 }
 
 
+
+/*exercicio48*/ //------------------------------VER SE É POSSIVEL DECLARAR ESTA ESTRUTURA NOUTRO FICHEIRO C E FAZZER O INCLUDE DO MESMO AQUI NESTE FICHEIRO 
+//Para aceder a campos dentro de uma estrutura usa-se o '.'
+
+typedef enum movimento {
+		Norte, 
+		Oeste, 
+		Sul,
+		Este} Movimento;
+
+typedef struct posicao {
+	int x, y;
+} Posicao;
+
+int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
+int tam=0;
+
+
+
+/*
+	printf("Valor de x: %d\n",inicial.x);
+	printf("Valor de y: %d\n",inicial.y);
+	printf("Posição na struct enum onde se encontra 'Sul': %d\n\n\n",n);//está a imprimir a numero da posição na struct do parametro "Sul",daí o "%d". 
+	
+	enum movimento n,s,e,o;
+	n=Norte;
+	o=Oeste;
+	s=Sul;
+	e=Este;
+											                            //Nota que a numeração dos parametro começa em zero.
+	
+	printf("Posição na struct enum onde se encontra 'Norte': %d\n",n);
+	printf("Posição na struct enum onde se encontra 'Oeste': %d\n",o);
+	printf("Posição na struct enum onde se encontra 'Sul': %d\n",s);
+	printf("Posição na struct enum onde se encontra 'Este': %d\n",e);
+
+	printf("Coordenada inicial: (%d,%d)\n",inicial.x,inicial.y);
+	printf("Coordenada final: (%d,%d)\n\n",final.x,final.y);
+*/
+	while(inicial.x != final.x || inicial.y != final.y){
+
+		if(inicial.x > final.x){
+			mov[tam]=1;
+			tam++;
+			inicial.x--;
+		} else if(inicial.x < final.x){
+			mov[tam]=3;
+			tam++;
+			inicial.x++;
+		} else if(inicial.y > final.y){
+			mov[tam]=2;
+			tam++;
+			inicial.y--;
+		} else if(inicial.y < final.y){
+			mov[tam]=0;
+			tam++;
+			inicial.y++;
+		}else if(inicial.x == final.x && inicial.y < final.y){
+			mov[tam]=0;
+			tam++;
+			inicial.y++;
+		} else if(inicial.x == final.x && inicial.y > final.y){
+			mov[tam]=2;
+			tam++;
+			inicial.y--;
+		} else if(inicial.x < final.x && (inicial.y == final.y)){
+			mov[tam]=3;
+			tam++;
+			inicial.x++;
+		} else if(inicial.x > final.x && inicial.y == final.y){
+			mov[tam]=1;
+			tam++;
+			inicial.x--;
+		}
+	
+	}
+			
+	printf("Posição atual do robo: (%d,%d)\n",inicial.x,inicial.y);
+	printf("Numero máximo de comandos permitidos ao robo para chegar ao destino: %d\n",N);
+	printf("Numero de comandos necessários para o robo chegar ao destino: %d\n",tam);
+	printf("TRAJETO: ");
+	for(int i=0;i<tam;i++){
+		printf("%d --> ",mov[i]);
+	}
+
+
+	if(tam>N){ /*pelo enunciado deveŕa retornar -1 caso o numero de comandos para chegar ao destino seja superior ao maximo estipulado*/
+		return -1;
+	}else{
+		return tam;
+	}
+
+}

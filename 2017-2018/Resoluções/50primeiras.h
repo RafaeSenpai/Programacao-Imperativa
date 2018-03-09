@@ -42,3 +42,4 @@ int triSup();
 
 int cardinalMSet();
 
+int caminho();
