@@ -1064,7 +1064,7 @@ int i;
 /*exercicio48*/  
 int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
 int tam=0;
-
+int i;
 
 
 /*
@@ -1133,7 +1133,7 @@ int tam=0;
 	printf("Numero máximo de comandos permitidos ao robo para chegar ao destino: %d\n",N);
 	printf("Numero de comandos necessários para o robo chegar ao destino: %d\n",tam);
 	printf("TRAJETO: ");
-	for(int i=0;i<tam;i++){
+	for(i=0;i<tam;i++){
 		printf("%d --> ",mov[i]);
 	}
 
@@ -1150,13 +1150,13 @@ int tam=0;
 double distancia(Posicao pos){
 int t;
 	
-	t=sqrt((pow(pos.x,2))+(pow(pos.y,2)));
+t=sqrt((pow(pos.x,2))+(pow(pos.y,2)));
 
 return t;
 }
 
 
-int     maiscentral (Posicao pos[], int N){
+int maiscentral (Posicao pos[], int N){
 int i,indice;
 double min;
 
@@ -1172,4 +1172,25 @@ double min;
 	}
 	printf("Ponto mais proximo é o ponto (%d,%d), e encontra-se na posição %d do array.\n",pos[indice].x,pos[indice].y,indice);
 	return indice;
+}
+
+/*exercicio50*/ //-----------------------------------------SÓ PASSA EM 1 TESTE ONLINE
+double distanciaDoisPontos(Posicao p,Posicao orig){
+int t;
+	
+t=sqrt((pow((p.x)-(orig.x),2))+(pow((p.y)-(orig.y),2)));
+
+return t;
+}
+
+int vizinhos (Posicao p, Posicao pos[], int N){
+int i, count;
+count =0;
+
+	for(i=0;i<N;i++){
+		if(distanciaDoisPontos(pos[i],p)==1){ //CONFIRMAR SE É CORRETO ENTENDER-SE QUE SER SUBJACENTE É DIZER QUE A SUA DISTANCIA ENTRE PONTOS É =1!!!
+			count++;
+		}
+	}
+	return count;
 }

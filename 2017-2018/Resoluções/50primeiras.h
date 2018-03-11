@@ -41,5 +41,5 @@ int triSup();
 
 
 int cardinalMSet();
-int maisCentral();
+int maiscentral();
 int caminho();

@@ -12,15 +12,17 @@
 void menu_50Primeiras(){
 int num=0;
 int opt=-1;
-int x=0;/*variavel usada na questão 4,13,25*/
-int y=0; /*variavel usada na questão 25,26,27*/
-int z=0; /*variavel usada no exercicio 27 */
-int *array1, *array2, *array3; /*usados nos exercicios 26 e 27*/
+int x=0;/*variavel usada na questão 4,13,25,49*/
+int y=0; /*variavel usada na questão 25,26,27,49*/
+int z=0; /*variavel usada no exercicio 27,49 */
+int *array1, *array2, *array3; /*usados nos exercicios 26, 27,49*/
 char s1[30];
 char s2[30];
 char *str1 = malloc(sizeof(char));
 char *str2 = malloc(sizeof(char));
 Posicao inicial,final;
+Posicao *array4 = malloc(sizeof(Posicao));
+//Posicao p1,p2,p3;
 int px,py;
 
 
@@ -710,7 +712,7 @@ int px,py;
 
 
 
-		case(48): //------------------------------------------FAZER COM MAIS TEMPO A INTERFACE PARA O UTILIZADOR INSERIR A MATRIZ
+		case(48): 
 		printf("Insira a posição inicial do robo\nEixo dos xx:");
 		scanf("%d",&px);
 		inicial.x=px;
@@ -736,6 +738,52 @@ int px,py;
 		getchar();
 		routingQuestion(6);	
 
+
+
+		case(49):
+		printf("Pretende inserir a lista de posições ou usar uma já predefinida para testes?\n");
+		printf("0 - Inserir lista de posições;\n1 - Usar lista predefinida;\n");
+		scanf("%d",&x);
+		while(x!=0 && x!=1){
+			printf("Opção inválida!\nEscolha uma opção válida.\n\n");
+			printf("0 - Inserir lista de posições;\n1 - Usar lista predefinida;\n");
+			scanf("%d",&x);
+		}
+		if(x==0){
+			printf("Quantas posições quer adicionar ao array?\n");
+			scanf("%d",&y);	
+			while(z<y){
+				printf("Posição-%d:",z+1);
+				printf("Eixo xx: ");
+				scanf("%d",&array4[z].x);
+				printf("\nEixo yy: ");
+				scanf("%d",&array4[z].y);
+				z++;
+				system("clear");
+			}
+			system("clear");
+			printf("ARRAY INSERIDO: [");
+			for(y=0;y<z;y++){
+				printf("(%d,%d) ",array4[y].x,array4[y].y);
+			}
+			printf("]\n\n");
+			maiscentral(array4,y);
+		}else{
+			system("clear");
+			/*--------------------------------------------------NÃO ESTOU A CONSEGUIR CRIAR O INPUT PREDEFINIDO
+			p1 ={-1,-2};
+			p2={0,2};
+			p3={0,20};
+
+			array4 =[p1, p2, p3, {-20,0}, {-20,-20}, {1,30}, {2,-1}, {-5,-5}, {-21,9}, {-2,-25}, {5,3}, {7,-8}, {-3,-3}, {-10,-9}, {-5,-2}, {10,3}];
+			*/
+			printf("ARRAY PREDEFINIDO: [");
+			for(y=0;y<16;y++){
+				printf("(%d,%d) ",array4[y].x,array4[y].y);
+			}
+			printf("]\n\n");
+			maiscentral(array4,16);
+		}
 		/* ... */
 
 
