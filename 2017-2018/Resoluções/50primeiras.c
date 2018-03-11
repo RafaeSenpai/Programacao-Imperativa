@@ -1,9 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <stdlib.h>/*apesar de funcionar sem este include,com ele incluido, evita-se os warnings por causa das alocações de memoria(mallocs)*/
+#include <string.h>/*apesar de funcionar sem este include,com ele incluido, evita-se os warnings por causa do uso da função "strlen"*/
+#include <math.h> /*para usar as funções sqrt e pow no exercicio 49*/
 #include "bigMain.h"/*quando se quer incluir uma API propria usa-se as aspas ao contrario <API's padrao>*/
-#include "50primeiras.h"
-#include "m_50Primeiras.h"
+#include "50primeiras.h"/*contem os headers de todas as primeiras 50 funções*/
+#include "m_50Primeiras.h"/*header da função que contem praticamente toda a interface necessária para as primeiras 50 questoes*/
+#include "myStructs.h"/*para incluir as estruturas de dados criadas para os exercicios 47,48,49,50*/
 
 /*exercicio1*/
 int maiorELemSequecia(){
@@ -167,13 +169,8 @@ int i;
 
 char *mystrstr (char s1[], char s2[]){
 int j = 0;
-char *p;
 
     if( ((strlen (s1)) == 0) && ((strlen (s2)) ==0)){ /*para o caso de o input ser duas strings vazias*/
-        p=&s1[j];
-        
-        //return p;
-        
         return &s1[j];
         
     }
@@ -181,9 +178,6 @@ char *p;
 	for(j=0; s1[j]!='\0';j++){
 		if(s1[j] == s2[0]){
 			if ((pretence(&s1[j],s2))==1){
-				p=&s1[j];
-				//return p;
-		        
 		        return &s1[j];
 		        
 			}
@@ -430,7 +424,7 @@ i=j=tamPrefixo=0;
 		}
 	}
 
-	//return tamPrefixo;
+	return tamPrefixo;
 }
 
 
@@ -1067,25 +1061,15 @@ int i;
 
 
 
-/*exercicio48*/ //------------------------------VER SE É POSSIVEL DECLARAR ESTA ESTRUTURA NOUTRO FICHEIRO C E FAZZER O INCLUDE DO MESMO AQUI NESTE FICHEIRO 
-//Para aceder a campos dentro de uma estrutura usa-se o '.'
-
-typedef enum movimento {
-		Norte, 
-		Oeste, 
-		Sul,
-		Este} Movimento;
-
-typedef struct posicao {
-	int x, y;
-} Posicao;
-
+/*exercicio48*/  
 int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
 int tam=0;
 
 
 
 /*
+	//---EXTRAS--->Para uma breve introdução sobre manipulação de estruturas
+	//Para aceder a campos dentro de uma estrutura usa-se o '.'
 	printf("Valor de x: %d\n",inicial.x);
 	printf("Valor de y: %d\n",inicial.y);
 	printf("Posição na struct enum onde se encontra 'Sul': %d\n\n\n",n);//está a imprimir a numero da posição na struct do parametro "Sul",daí o "%d". 
@@ -1095,8 +1079,8 @@ int tam=0;
 	o=Oeste;
 	s=Sul;
 	e=Este;
-											                            //Nota que a numeração dos parametro começa em zero.
-	
+
+	//Nota que a numeração dos parametro começa em zero.
 	printf("Posição na struct enum onde se encontra 'Norte': %d\n",n);
 	printf("Posição na struct enum onde se encontra 'Oeste': %d\n",o);
 	printf("Posição na struct enum onde se encontra 'Sul': %d\n",s);
@@ -1104,6 +1088,8 @@ int tam=0;
 
 	printf("Coordenada inicial: (%d,%d)\n",inicial.x,inicial.y);
 	printf("Coordenada final: (%d,%d)\n\n",final.x,final.y);
+
+	//---FIM DOS EXTRAS---
 */
 	while(inicial.x != final.x || inicial.y != final.y){
 
@@ -1158,4 +1144,32 @@ int tam=0;
 		return tam;
 	}
 
+}
+
+/*exercicio49*/ //-----a função so passa em dois testes e dá erro em localhost por causa do uso do pow e sqrt mesmo com a bib math.h
+double distancia(Posicao pos){
+int t;
+	
+	t=sqrt((pow(pos.x,2))+(pow(pos.y,2)));
+
+return t;
+}
+
+
+int     maiscentral (Posicao pos[], int N){
+int i,indice;
+double min;
+
+	min=distancia(pos[0]);
+	indice = 0;
+
+	for(i=1;i<N;i++){
+	    printf("PONTO: (%d,%d)\n",pos[i].x,pos[i].y);
+		if(distancia(pos[i])<min){
+			min=distancia(pos[i]);
+			indice=i;
+		}
+	}
+	printf("Ponto mais proximo é o ponto (%d,%d), e encontra-se na posição %d do array.\n",pos[indice].x,pos[indice].y,indice);
+	return indice;
 }

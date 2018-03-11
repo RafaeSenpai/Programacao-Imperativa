@@ -10,6 +10,7 @@ AllWhithWarnnings: cleanAll bigMain.o ficha1.o m_Ficha1.o reRoutingEntreMenus.o 
 bigMain.o: bigMain.c
 	gcc -Wall -c bigMain.c 
 	
+
 ficha1.o: ficha1.c    ficha1.h
 	gcc -Wall -c ficha1.c #a opção -c diz ao compilador para gerar apenas o arquivo objecto com extenção ***.o
 

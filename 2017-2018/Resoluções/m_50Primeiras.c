@@ -6,16 +6,7 @@
 #include "bigMain.h" /*quando se quer incluir uma API propria usa-se as aspas ao contrario <API's padrao>*/
 #include "m_50Primeiras.h" 
 #include "50primeiras.h"
-typedef enum movimento {
-		Norte, 
-		Oeste, 
-		Sul,
-		Este} Movimento;
-
-typedef struct posicao {
-	int x, y;
-} Posicao;
-
+#include "myStructs.h"
 
 /*MENU DAS 50 PERGUNTAS*/
 void menu_50Primeiras(){
@@ -162,7 +153,7 @@ int px,py;
 
 		case(8):
 		system("clear");
-		char* dest;
+		char* dest = malloc(sizeof(char));
 		printf("Insira a string\n");
 		scanf("%s",s1);
 		printf("O conteudo da string 'source' com endereço %d é: %s\n",&s1,s1);

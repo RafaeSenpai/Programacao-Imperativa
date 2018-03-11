@@ -36,10 +36,10 @@ int elimRepOrd();
 int comunsOrd();
 int comuns();
 int minInd();
-void somaAc();
+void somasAc();
 int triSup();
 
 
 int cardinalMSet();
-
+int maisCentral();
 int caminho();
