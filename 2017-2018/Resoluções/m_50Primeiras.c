@@ -21,8 +21,45 @@ char s2[30];
 char *str1 = malloc(sizeof(char));
 char *str2 = malloc(sizeof(char));
 Posicao inicial,final;
+
+/*Array de teste para a questão 50*/
 Posicao *array4 = malloc(sizeof(Posicao));
-//Posicao p1,p2,p3;
+
+Posicao pos1 = {-1,-2};
+Posicao pos2 = {0,2};
+Posicao pos3 = {0,20};
+Posicao pos4 = {-20,0};
+Posicao pos5 = {-20,-20};
+Posicao pos6 = {1,30};
+Posicao pos7 = {2,-1};
+Posicao pos8 = {-5,-5};
+Posicao pos9 = {-21,9};
+Posicao pos10 = {-2,-25};
+Posicao pos11 = {5,3};
+Posicao pos12 = {7,-8};
+Posicao pos13 = {-3,-3};
+Posicao pos14 = {-10,-9};
+Posicao pos15 = {-5,-2};
+Posicao pos16 = {10,3};
+
+array4[0] = pos1;
+array4[1] = pos2;
+array4[2] = pos3;
+array4[3] = pos4;
+array4[4] = pos5;
+array4[5] = pos6;
+array4[6] = pos7;
+array4[7] = pos8;
+array4[8] = pos9;
+array4[9] = pos10;
+array4[10] = pos11;
+array4[11] = pos12;
+array4[12] = pos13;
+array4[13] = pos14;
+array4[14] = pos15;
+array4[15] = pos16;
+
+
 int px,py;
 
 
@@ -770,13 +807,8 @@ int px,py;
 			maiscentral(array4,y);
 		}else{
 			system("clear");
-			/*--------------------------------------------------NÃO ESTOU A CONSEGUIR CRIAR O INPUT PREDEFINIDO
-			p1 ={-1,-2};
-			p2={0,2};
-			p3={0,20};
-
-			array4 =[p1, p2, p3, {-20,0}, {-20,-20}, {1,30}, {2,-1}, {-5,-5}, {-21,9}, {-2,-25}, {5,3}, {7,-8}, {-3,-3}, {-10,-9}, {-5,-2}, {10,3}];
-			*/
+			//--------------------------------------------------NÃO ESTOU A CONSEGUIR CRIAR O INPUT PREDEFINIDO
+			
 			printf("ARRAY PREDEFINIDO: [");
 			for(y=0;y<16;y++){
 				printf("(%d,%d) ",array4[y].x,array4[y].y);
@@ -796,3 +828,4 @@ int px,py;
 	
 	}
 }
+

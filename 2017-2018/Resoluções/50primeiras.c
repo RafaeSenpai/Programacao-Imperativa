@@ -1021,32 +1021,151 @@ int i,j;
 	return 0;
 }
 
+/*exercicio40*/
+void transposta (int N, float m [N][N]){
+float aux [N][N];
+int i,j;
+    
+    printf("\n\nINPUT:\n");
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				printf("%d ",m[i][j]);
+		}
+		printf("\n");
+	}
+	for(i=0;i<N;i++){
+		for(j=0;j<N;j++){
+			aux[i][j]=m[j][i];
+		}
+	}
+    printf("TRANSPOSTA:\n");
+		for(i=0;i<N;i++){
+			for(j=0;j<N;j++){
+				printf("%d ",aux[i][j]);
+		}
+		printf("\n");
+	}
+}
 
-/*exercicio42*///--------------------------------------------------NÃO ESToU A PERCEBER O PROBLEMA
-/*
+
+/*exercicio41*/
+void addTo (int N, int M, int a [N][M], int b[N][M]){
+int i,j;
+
+		printf("MATRIZ - 1\n");
+		for(i=0;i<N;i++){
+			for(j=0;j<M;j++){
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("MATRIZ - 2\n");
+		for(i=0;i<N;i++){
+			for(j=0;j<M;j++){
+				printf("%d ",b[i][j]);
+			}
+			printf("\n");
+		}
+
+	for(i=0;i<N;i++){
+		for(j=0;j<M;j++){
+			a[i][j] += b[i][j];
+		}
+	}
+	
+		printf("\nMATRIZ RESULTADO\n");
+		for(i=0;i<N;i++){
+			for(j=0;j<M;j++){
+				printf("%d ",a[i][j]);
+			}
+			printf("\n");
+		}
+		printf("\n\n");
+}
+
+
+/*exercicio42*/ //---------------------------------------100% CORRETA MAS PERCEBER MELHOR O PROBLEMA PROPOSTO!
 int unionSet (int N, int v1[N], int v2[N], int r[N]){
 int i,j;
 
-	for(i=0;i<N;i++){
-		v1[i]=v1[i]+v2[i];
-	}
-
-	for(i=0;i<N;i++){
-		r[i]=0;
-	}
-	
-	for(i=0;i<N;i++){
-		j=0;
-		while(j<v[i]){
-			j++;
+	for(i=j=0;i<N;i++,j++){
+		if(v1[i]==0 && v2[i]==0){
+			r[j]=0;
+		}else if(v1[i]==1){
+			r[j]=1;
+		}else if(v2[i]==1){
+			r[j]=1;
 		}
-		r[j]=1;
 	}
+	return 0;
+}
+
+
+
+
+
+
+/*exercicio43*/
+int intersectSet (int N, int v1[N], int v2[N], int r[N]){
+int i,j;
+
+	for(i=j=0;i<N;i++,j++){
+		if(v1[i]==1 && v2[i]==1){
+			r[j]=1;
+        }else{
+			r[j]=0;
+		}
+	}
+	return 0;
+}
+
+/*exercicio44*/
+/*
+int intersectMSet (int N, int v1[N], int v2[N], int r[N]){
+int i;
+	for(i=0;i<N;i++){
+		if(v1[i]==1 && v2[i]==0){
+			r[i]=v1[i];
+		}else if(v1[i]==0 && v2[i]==1){
+			r[i]=v2[i];
+		}else if(v1[i]==1 && v2[i]==1){
+			r[i]=v1[i]+v2[i];
+		}else{
+			r[i]=v1[i];
+		}
+	}
+	return 0;
 }
 */
 
+/*
+int intersect(int N,int x,int v[N]){
+int i;
+    for(i=0;i<N;i++){
+        if(v[i]==x){
+            printf("\n v[i]:%d == x:%d\n",v[i],x);
+            return 1;
+        }
+    }
+    return 0;
+}
 
-/*exercicio46*/ //---------------------------FUNCIONAL
+int intersectMSet (int N, int v1[N], int v2[N], int r[N]){
+int i,j;
+j=0;
+	for(i=0;i<N;i++){
+		if((intersect(N,v2[i],v1))==1){
+			r[j]=v1[i];
+            j++;
+	    }
+	}
+	return 0;
+}
+*/
+
+/*exercicio45*/
+
+/*exercicio46*/
 int cardinalMSet (int N, int v[N]){
 int numElems=0;
 int i;
@@ -1060,6 +1179,22 @@ int i;
 }
 
 
+/*exercicio47*/
+Posicao posFinal (Posicao inicial, Movimento mov[], int N){
+int i;
+	for(i=0;i<N;i++){
+		if(mov[i]==Norte){
+			inicial.y+=1;
+		}else if(mov[i]==Sul){
+			inicial.y-=1;
+		}else if(mov[i]==Este){
+			inicial.x+=1;
+		}else{
+			inicial.x-=1;
+		}
+	}
+	return inicial;
+}
 
 /*exercicio48*/  
 int caminho (Posicao inicial, Posicao final, Movimento mov[], int N){
@@ -1174,21 +1309,27 @@ double min;
 	return indice;
 }
 
-/*exercicio50*/ //-----------------------------------------SÓ PASSA EM 1 TESTE ONLINE
-double distanciaDoisPontos(Posicao p,Posicao orig){
-int t;
-	
-t=sqrt((pow((p.x)-(orig.x),2))+(pow((p.y)-(orig.y),2)));
-
-return t;
+/*exercicio50*/ //-----------------------------------------SÓ PASSA EM 1 TESTE ONLINE E DÁ ERRO POR CAUSA DO POW(mesmo com o include do math.h)
+double e_adjacente(Posicao p,Posicao orig){
+    /*o uso do pow é para evitar resultados negativos*/
+	if(( ((p.x)==(orig.x)) && (((p.y)==pow((orig.y-1),2)) || ((p.y)==pow(((orig.y)+1),2)) )) || /*ponto encontra-se no mesmo eixo dos xx mas acima ou a baixo do ponto origem*/
+	   ( ((p.y)==(orig.y)) && (((p.x)==pow((orig.x-1),2)) || ((p.x)==pow(((orig.x)+1),2)) )) || /*ponto encontra-se no mesmo eixo dos xx mas á esquerda ou á direita do ponto origem*/
+       ( pow(((p.y)-1),2)==(orig.y)) && (((pow((p.x)-1,2))==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) ||/*ponto encontra-se nas posições infeirores que fazem a diagonal com o ponto origem(á esquerda e direita inferiores do ponto original)*/
+       ( pow(((p.y)+1),2)==(orig.y)) && ((pow(((p.x)-1),2)==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) )/*ponto encontra-se nas posições superiores que fazem a diagonal com o ponto origem(á esquerda e direita acima do ponto original)*/
+	{
+		return 1;
+	}
+	return 0;
 }
+
 
 int vizinhos (Posicao p, Posicao pos[], int N){
 int i, count;
 count =0;
-
+    
+    
 	for(i=0;i<N;i++){
-		if(distanciaDoisPontos(pos[i],p)==1){ //CONFIRMAR SE É CORRETO ENTENDER-SE QUE SER SUBJACENTE É DIZER QUE A SUA DISTANCIA ENTRE PONTOS É =1!!!
+		if(e_adjacente(pos[i],p)==1){ //CONFIRMAR SE É CORRETO ENTENDER-SE QUE SER SUBJACENTE É DIZER QUE A SUA DISTANCIA ENTRE PONTOS É =1!!!
 			count++;
 		}
 	}
