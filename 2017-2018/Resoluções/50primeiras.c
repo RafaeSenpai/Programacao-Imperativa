@@ -72,7 +72,11 @@ int numBits = 0;
 }
 
 
-/*exercicio5*/ //NOTA: O que nos é pedido é o numero de bits a zero(menos significativos) a partir do bit a 1 mais significativo
+/*exercicio5*/ 
+/*NOTA: O que nos é pedido é o numero de bits a zero(menos significativos) a partir do bit a 1 mais significativo (os bits de representação binaria
+obtem-se por divisoes sucessivas por 2 e os restos dessas sucessivas divisões serão os bits da representação binária, LIDOS(os restos) DO FINAL DE 
+TODAS AS DIVISÕES ATÉ AO RESTO DA PRIMEIRA DIVISÃO).
+*/
 int trailingZ (unsigned int n){
 int count=0;
 
@@ -94,37 +98,49 @@ int nDigitos = 0;
 	return nDigitos;
 }
 
-/*exercicio7*/ //--------------------------------------------------------------------------------------------diz que não retorna output no teste online
+/*exercicio7*/
 char *mystrcat (char s1[], char s2[]){
 int i,j;
 
-	for (i=0; s1[i]!='\0';i++);
-	for (j=0;s2[j]!='\0';j++){
+	for(i=0;s1[i]!='\0';i++);
+
+	for(j=0;s2[j]!='\0';j++,i++){
 		s1[i]=s2[j];
-		i++;
 	}
-	
-	return s1;
+	s1[i++]='\0';
+
+return s1;
 }
 
-/*exercicio8*/ //--------------------------------------------------------------------------------------------dá errado nos testes online
-char *mystrcpy (char *dest, char source[]){
-int tam, i;
-	
-	for(tam = 0; source[tam]!='\0';tam++);
-	
-	dest = malloc (tam * sizeof(char));	
-	
-	for(i = 0; source[i]!='\0'; i++){
-		dest[i]=source[i];
-	}
-	
-/*	i++;
-	dest[i]='\0';
+/*exercicio8*/
+char *mystrcpy(char s1[], const char s2[]) {
+int i;
+
+    for(i=0;s2[i]!='\0';i++){
+        s1[i]=s2[i];        
+    }
+    s1[i++]='\0';
+    
+    return s1;
+}
+
+/*
+#include <stdlib.h>
+char *strcpy (char *dest, char source[]) {
+int i;
+
+    for(i=0;source[i]!='\0';i++);
+    
+    dest = malloc(i * sizeof(char));
+    
+    for(i=0;source[i]!='\0';i++){
+        dest[i]=source[i];
+    }
+    dest[i++]='\0';
+    
+    return dest;
+}
 */
-	return dest;
-}
-
 
 /*exercicio9*/
 int mystrcmp (char s1[], char s2[]){
@@ -151,7 +167,35 @@ int i,x,y;
 }	
 
 
-/*exercicio10*/ //---------------------------------------------------------------------------------------------Falha em apenas 1 dos testes online
+/*exercicio10*/
+char *mystrstr (char s1[], char s2[]){
+    
+    int t1= strlen(s1);
+    int t2= strlen(s2);
+    int i,j;
+
+    if(t2>t1) //caso a string 2 seja maior que s1 é logo NULL
+        return NULL;
+
+    for(i=0;i<=t1;i++){//tem que ser i<=t1 para que chegue á ultima comparação '\0' de s1 == '\0' de s2  
+        
+        for(j=0;s2[j]!='\0' && s2[j]==s1[j+i];j++);
+        
+        if(s2[j]=='\0'){
+            return &s1[i];
+        }
+    }
+    
+    return NULL;
+}
+
+
+
+
+
+
+/*
+//RESLUÇÃO EXTRA: Falha em apenas 1 dos testes online
 int pretence(char s1[],char s2[]){
 int i;
 
@@ -165,8 +209,12 @@ int i;
 
 char *mystrstr (char s1[], char s2[]){
 int j = 0;
+	
+	if(strlen(s2)>strlen(s1)){
+		return NULL;
+	}
 
-    if( ((strlen (s1)) == 0) && ((strlen (s2)) ==0)){ /*para o caso de o input ser duas strings vazias*/
+    if( ((strlen (s1)) == 0) && ((strlen (s2)) ==0)){ //para o caso de o input ser duas strings vazias
         return &s1[j];
         
     }
@@ -181,7 +229,7 @@ int j = 0;
 	}
 return NULL;
 }
-
+*/
 /*exercicio11*/
 void mystrrev (char s[]){
 char aux;
@@ -238,48 +286,30 @@ int j=0;
 
 
 
-/*exercicio13*/ //_---------------------------------------------------------------------------------------NÃO FUNCIONA-----------------------------------
-
-/*
+/*exercicio13*/ //_----------------------------------------------PASSA APENAS EM 2 TESTES-----------------------------------
 void truncW (char t[], int n){
-int x=0;
-int i,count;
-char *aux;
-	for(i=0;t[i]!='\0';i++);
-	aux = (char*) malloc(i*sizeof(char));
+int i, ind, count;
+ind=0;
+count=0;
 
-	for(i=0;t[i]!='\0';i++){
-		while(t[i]==' '){
-			i++;
-		}
-		count=n;
-		while(count>0 && t[i]!=' '){
-			aux[x] = t[i];
-			x++;
-			i++;
-			count--;
-		}
-		//count = n;
-		aux[x] = ' ';
-		x++;
-		
-		while(t[i]!=' '){ //talvez aqui ele salte uma posição á frente
-			i++;
-		}
+    for(i=0;t[i]!='\0';i++){
+        
+        for(count=0;count<n && t[i]!=' ' && t[i]!='\0';count++,ind++,i++){
+            t[ind]=t[i];
+        }
+        
+        while(t[i]!=' ' && t[i]!='\0'){
+            i++;
 
-	}
-	aux[x] = '\0';
-
-	for(i=0;aux[i]!='\0';i++){
-		t[i]=aux[i];
-	}
-	t[i]='\0';
-	printf("A string inserida usando corte de %d carateres fica: %s",n,t);//este print deve ser retirado para que funcione no teste online
+        }
+        
+        if(t[i+1]!='\0'){
+            t[ind++]=' ';
+        }else{
+            t[ind++]='\0';
+        }
+    }
 }
-*/
-
-
-
 
 /*exercicio 14*/
 int numOcorrencias(char x, char s[]){
@@ -329,7 +359,47 @@ int i;
 }
 
 
-/*exercicio16*/ //---------------------------------------------------------------------------------------------SÓ ACERTA EM 1 TESTE (PROVAVELMENTE OS TESTES ESTÃO ERRADOS)
+/*exercicio16*/ 
+//ULTIMA RESOLUÇÃO ----só passa num teste
+int difConsecutivos(char s[]) {
+int i, count,max;
+count=1;
+max=0;
+
+    for(i=0;s[i]!='\0';i++){
+        while(s[i]!=s[i+1] && s[i+1]!='\0'){
+            count++;
+            i++;
+        }
+        if(count>max){
+            max=count;
+        }
+        count=1;
+    }
+    return max;
+}
+/*
+//ULTIMA RESOLUÇÃO QUE DÁ SEGMETATION FAULT
+int difConsecutivos(char s[]) {
+int i, count,max;
+count=1;
+max=0;
+
+    for(i=0;s[i]!='\0';i++){
+        while(s[i]!=s[i+1] && s[i+1]!='\0'){
+            count++;
+            i++;
+        }
+        if(count>max){
+            max=count;
+        }
+        count=1;
+    }
+    return max;
+}
+
+
+//----------------------------SÓ ACERTA EM 1 TESTE (PROVAVELMENTE OS TESTES ESTÃO ERRADOS)
 int countDifConsecutivos (char s[]){
 int count = 1;
 int i=0;
@@ -353,7 +423,7 @@ int max=0;
     }
     return max;
 }
-
+*/
 
 
 /*exercicio17*/
@@ -1160,11 +1230,12 @@ j=0;
 */
 
 /*exercicio45*/
+/*
 int quantos(int x,)
 int unionMSet (int N, int v1[N], int v2[N], int r[N]){
 
 }
-
+*/
 /*exercicio46*/
 int cardinalMSet (int N, int v[N]){
 int numElems=0;
@@ -1281,7 +1352,8 @@ int i;
 
 }
 
-/*exercicio49*/ //-----a função so passa em dois testes e dá erro em localhost por causa do uso do pow e sqrt mesmo com a bib math.h
+/*exercicio49*/ //-----a função so passa em dois testes e DÁ ERRO EM LOCALHOST POR CAUSA DO USO DO POW E SQRT mesmo com a bib math.h
+/*
 double distancia(Posicao pos){
 int t;
 	
@@ -1308,14 +1380,15 @@ double min;
 	printf("Ponto mais proximo é o ponto (%d,%d), e encontra-se na posição %d do array.\n",pos[indice].x,pos[indice].y,indice);
 	return indice;
 }
-
-/*exercicio50*/ //-----------------------------------------SÓ PASSA EM 1 TESTE ONLINE E DÁ ERRO POR CAUSA DO POW(mesmo com o include do math.h)
+*/
+/*exercicio50*/ //--------SÓ PASSA EM 1 TESTE ONLINE E DÁ ERRO POR CAUSA DO POW(mesmo com o include do math.h), por esse motivo é que a função se encontra comentada
+/*
 double e_adjacente(Posicao p,Posicao orig){
-    /*o uso do pow é para evitar resultados negativos*/
-	if(( ((p.x)==(orig.x)) && (((p.y)==pow((orig.y-1),2)) || ((p.y)==pow(((orig.y)+1),2)) )) || /*ponto encontra-se no mesmo eixo dos xx mas acima ou a baixo do ponto origem*/
-	   ( ((p.y)==(orig.y)) && (((p.x)==pow((orig.x-1),2)) || ((p.x)==pow(((orig.x)+1),2)) )) || /*ponto encontra-se no mesmo eixo dos xx mas á esquerda ou á direita do ponto origem*/
-       ( pow(((p.y)-1),2)==(orig.y)) && (((pow((p.x)-1,2))==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) ||/*ponto encontra-se nas posições infeirores que fazem a diagonal com o ponto origem(á esquerda e direita inferiores do ponto original)*/
-       ( pow(((p.y)+1),2)==(orig.y)) && ((pow(((p.x)-1),2)==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) )/*ponto encontra-se nas posições superiores que fazem a diagonal com o ponto origem(á esquerda e direita acima do ponto original)*/
+    //o uso do pow é para evitar resultados negativos
+	if(( ((p.x)==(orig.x)) && (((p.y)==pow((orig.y-1),2)) || ((p.y)==pow(((orig.y)+1),2)) )) || //ponto encontra-se no mesmo eixo dos xx mas acima ou a baixo do ponto origem
+	   ( ((p.y)==(orig.y)) && (((p.x)==pow((orig.x-1),2)) || ((p.x)==pow(((orig.x)+1),2)) )) || //ponto encontra-se no mesmo eixo dos xx mas á esquerda ou á direita do ponto origem
+       ( pow(((p.y)-1),2)==(orig.y)) && (((pow((p.x)-1,2))==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) ||//ponto encontra-se nas posições infeirores que fazem a diagonal com o ponto origem(á esquerda e direita inferiores do ponto original)
+       ( pow(((p.y)+1),2)==(orig.y)) && ((pow(((p.x)-1),2)==(orig.x)) || (pow((p.x)+1,2))==((orig.x)) ) )//ponto encontra-se nas posições superiores que fazem a diagonal com o ponto origem(á esquerda e direita acima do ponto original)
 	{
 		return 1;
 	}
@@ -1335,8 +1408,4 @@ count =0;
 	}
 	return count;
 }
-
-/*
-REVER EXERCICIOS:
-5,7,8,10,13,16,19,24,35*,39,42*,44,49,50
 */

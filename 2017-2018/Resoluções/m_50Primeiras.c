@@ -251,7 +251,7 @@ int px,py;
 		fgets(str1,50,stdin);
 		printf("Insira o valor a que quer truncar as palavras da string:\n");
 		scanf("%d",&x);
-//		truncW(str1,x);
+		truncW(str1,x);
 		routingQuestion(6);
 
 
@@ -776,7 +776,8 @@ int px,py;
 		routingQuestion(6);	
 
 
-
+		//comentada devido á unção chada também se encontrar comentada
+		/*
 		case(49):
 		printf("Pretende inserir a lista de posições ou usar uma já predefinida para testes?\n");
 		printf("0 - Inserir lista de posições;\n1 - Usar lista predefinida;\n");
@@ -816,6 +817,7 @@ int px,py;
 			printf("]\n\n");
 			maiscentral(array4,16);
 		}
+		*/
 		/* ... */
 
 
@@ -828,4 +830,10 @@ int px,py;
 	
 	}
 }
+/*
+REVER EXERCICIOS:
+10*,13**,16*,19,24,35*,39,42*,44,49,50
+*rever apenas pois está a funcionar
+**nao funciona nem sem como resolver
 
+*/
