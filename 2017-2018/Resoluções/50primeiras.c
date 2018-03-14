@@ -72,19 +72,15 @@ int numBits = 0;
 }
 
 
-/*exercicio5*/ //---------------------------------------------------------------------------------------------dá errado no teste online
+/*exercicio5*/ //NOTA: O que nos é pedido é o numero de bits a zero(menos significativos) a partir do bit a 1 mais significativo
 int trailingZ (unsigned int n){
-int numZero = 0;
+int count=0;
 
-	while(n>=1){
-		if(n%2==0){
-			numZero++;
-			n=n/2;
-		}else{
-			n=n/2;
-		}
-	}
-	return numZero;
+    while(n>=2 && n%2==0){
+        count++;
+        n=n/2;
+    }
+    return count;
 }
 
 /*exercicio6*/
@@ -1164,6 +1160,10 @@ j=0;
 */
 
 /*exercicio45*/
+int quantos(int x,)
+int unionMSet (int N, int v1[N], int v2[N], int r[N]){
+
+}
 
 /*exercicio46*/
 int cardinalMSet (int N, int v[N]){
@@ -1335,3 +1335,8 @@ count =0;
 	}
 	return count;
 }
+
+/*
+REVER EXERCICIOS:
+5,7,8,10,13,16,19,24,35*,39,42*,44,49,50
+*/
