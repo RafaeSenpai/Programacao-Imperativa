@@ -181,97 +181,25 @@ LInt anterior=NULL; //futuramente se anterior!=NULL então quer dizer que está 
 
 
 /*exercicio6*/
-/*
 int removeOneOrd (LInt *l, int x){
-LInt aux = *l;
-LInt anterior=NULL;
+LInt *aux = l; //cria-se um apontador auxiliar, *aux, que vai ficar com o endereço onde está o conteudo de (*l), mas como (*aux) é um apontador, este vai ficar com o endereço e não com o conteudo existente no endereço, assim tem-se que (*aux)=l, pois 'l' é o endereço.
 
+//printf("%d",aux)<-----mostra o endereço de memoria para onde o apontador (*aux) está a apontar
+//printf("%d",*aux);<---mostra o conteudo existente no endereço de memoria guardado em (*aux)    
 
-	if(aux==NULL){ //para o caso de receber uma lista vazia
-		return 1;
-	}
-
-    if(aux->prox==NULL && aux->valor==x){ //para o caso de a lista tiver um so valor
-        (*l)=NULL;
-        return 0;
-	}
+    while((*aux) && (*aux)->valor<x){
+        aux=&((*aux)->prox); //'aux' é um apontador que detém o endereço para onde aponta (*aux)->prox, mas (*aux)->prox é conteudo e não um endereço de memoria, entao coloca-se &((*aux)->prox)
+    }
     
-	while(aux->prox!=NULL && aux->valor!=x){ //para o caso da lista ter varios valores
-		anterior=aux;
-		aux=aux->prox;
-	}
-	
-	if(aux->valor==x){
-	    anterior = aux;
-	    anterior->prox=aux->prox;
-	    free(aux);
-	    return 0;
-	}else{
-	    return 1;
-	}
+    if((*aux) && (*aux)->valor==x){
+        free(*aux); //limpa o conteudo existente (*aux) na posição de memoria indicada pelo apontador 'aux'        
+        *aux=(*aux)->prox; //atribui o conteudo existente em (*aux)->prox a (*aux),que representa informação 
+
+        return 0;
+    }else{
+        return 1;
+    }
 }
-*/
-
-
-/*
-int removeOneOrd (LInt *l, int x){
-LInt ant, nodo;
-nodo = (*l);
-
-	if((*l)==NULL){ //caso receba uma lista vazia
-		return 1;
-	}
-
-
-	while(nodo!=NULL && nodo->valor!=x){//avança na lista enquanto nao encontrar o valor ou chegar ao final da lista
-		ant=nodo;
-		nodo=nodo->prox;
-	}
-
-	if(nodo==NULL){//caso o (*nodo) seja null, então é porque está no final da lista e não encontrou o valor
-		return 1;
-	}
-
-	if(nodo==(*l)){//caso o (*nodo) seja igual ao inicio é porque o valor a eliminar foi encontrado logo no inicio da lista
-		(*l)=nodo->prox;
-	}else{//caso tenha sido encontrado o valor a meio da lista
-		ant->prox=nodo->prox;
-		free(nodo);
-		return 0;
-	}
-}
-*/
-
-int removeOneOrd (LInt *l, int x){
-LInt anterior, nodo;
-nodo = (*l);
-	
-	printf("Valor do (*l): %d\n", (*l));
-	printf("Valor do (l): %d\n", l);
-	printf("valor de nodo: %d\n",nodo);
-
-	if((*l)==NULL){
-		return 1;
-	}
-
-	while(nodo->prox!=NULL && nodo->valor!=x){
-		anterior = nodo;
-		nodo=nodo->prox;
-	}
-
-	if(anterior==NULL){
-		(*l)=(*l)->prox;
-		free(nodo);
-		return 0;
-	}else{
-		anterior->prox=nodo->prox;
-		free(nodo);
-		return 0;
-	}
-	return 1;
-}
-
-
 
 /*exercicio7*/
 LInt insereNodo(int x,LInt l){
@@ -307,3 +235,22 @@ LInt aux2 = b;
 	
 }
 
+
+
+
+
+
+void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
+LInt aux = l;
+
+    while(aux){
+        if(aux->valor<x){
+            (*mx)=newLInt(aux->valor,(*mx));
+            mx=&((*mx)->prox);         
+        }else{
+            (*Mx)=newLInt(aux->valor,(*Mx));
+            Mx=&((*Mx)->prox);             
+        }
+        aux=aux->prox;
+    }
+}
