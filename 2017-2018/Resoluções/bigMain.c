@@ -9,6 +9,7 @@
 //#include "m_Ficha5.h"
 //#include "m_Ficha6.h"
 #include "m_50Primeiras.h"
+#include "m_50Segundas.h"
 
 
 void menu_BigMain(){
@@ -49,12 +50,12 @@ int opt=-1;
 		system("clear");
 		menu_50Primeiras();
 		break;
-/*
+
 		case(7):
 		system("clear");
-		menu_50segundas();
+		menu_50Segundas();
 		break;
-*/	
+	
 		
 
 		case(8):

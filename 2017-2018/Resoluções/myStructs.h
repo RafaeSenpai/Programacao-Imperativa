@@ -14,5 +14,9 @@ typedef struct posicao {
 } Posicao;
 
 
-
+/*Structs a baixo dizem respeito ás 50 segundas questões*/
+typedef struct lligada{
+	int valor;
+	struct lligada *prox;
+}*LInt;
 

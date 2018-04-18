@@ -1,16 +1,15 @@
 
-All: bigMain.o ficha1.o m_Ficha1.o reRoutingEntreMenus.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o clear 
-	 gcc bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o reRoutingEntreMenus.o -o bigMain
+All: bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o 50segundas.o m_50Segundas.o reRoutingEntreMenus.o clear 
+	 gcc bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o 50segundas.o m_50Segundas.o reRoutingEntreMenus.o -o bigMain
 	 ./bigMain #esta linha arranca o executavel criado na linha imediatamente a seguir
 
-AllWhithWarnnings: cleanAll bigMain.o ficha1.o m_Ficha1.o reRoutingEntreMenus.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o
-	gcc bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o reRoutingEntreMenus.o -o bigMain
+AllWhithWarnnings: cleanAll bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o 50segundas.o m_50Segundas.o reRoutingEntreMenus.o
+	gcc bigMain.o ficha1.o m_Ficha1.o ficha2.o m_Ficha2.o ficha3.o m_Ficha3.o 50primeiras.o m_50Primeiras.o 50segundas.o m_50Segundas.o reRoutingEntreMenus.o -o bigMain
 	
 
 bigMain.o: bigMain.c
 	gcc -Wall -c bigMain.c 
 	
-
 ficha1.o: ficha1.c    ficha1.h
 	gcc -Wall -c ficha1.c #a opção -c diz ao compilador para gerar apenas o arquivo objecto com extenção ***.o
 
@@ -35,6 +34,11 @@ m_Ficha3.o: m_Ficha3.c    m_Ficha3.h
 m_50Primeiras.o: m_50Primeiras.c    m_50Primeiras.h
 	gcc -Wall -c m_50Primeiras.c
 
+50segundas.o: 50segundas.c    50segundas.h
+	gcc -Wall -c 50segundas.c
+
+m_50Segundas.o: m_50Segundas.c    m_50Segundas.h
+	gcc -Wall -c m_50Segundas.c
 
 reRoutingEntreMenus.o: reRoutingEntreMenus.c    reRoutingEntreMenus.h
 	gcc -Wall -c reRoutingEntreMenus.c

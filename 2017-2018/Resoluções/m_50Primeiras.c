@@ -278,7 +278,7 @@ int px,py;
 		printf("Insira a string:\n");
 		getchar();
 		fgets(str1,50,stdin);
-		printf("O maior numero de caracteres diferentes consecutivos na string inserida é: %d\n",countDifConsecutivos(str1));
+	//	printf("O maior numero de caracteres diferentes consecutivos na string inserida é: %d\n",countDifConsecutivos(str1));
 		routingQuestion(6);
 
 
@@ -831,9 +831,9 @@ int px,py;
 	}
 }
 /*
-REVER EXERCICIOS:
+REVER EXERCICIOS DOS 50 PRIMEIROS:
 10*,13**,16*,19,24,35*,39,42*,44,49,50
 *rever apenas pois está a funcionar
-**nao funciona nem sem como resolver
+**nao funciona nem sei como resolver
 
 */

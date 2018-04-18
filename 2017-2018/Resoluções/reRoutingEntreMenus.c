@@ -11,7 +11,7 @@
 //#include "m_Ficha6.h"
 //#include "m_Ficha7.h"
 #include "m_50Primeiras.h"
-
+#include "m_50Segundas.h"
 
 
 /*
@@ -59,6 +59,10 @@ void menu_Ficha(int numFicha){
 			menu_50Primeiras();
 			break;
 
+			case(7):
+			system("clear");
+			menu_50Segundas();
+			break;
 
 			/* Não precisa do default no swith porque õs valores passados para a escolha do case já sao verificados nos passos anteriores, dai não haver necessidade de usa-lo!*/
 		}
