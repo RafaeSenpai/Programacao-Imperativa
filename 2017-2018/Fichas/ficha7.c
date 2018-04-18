@@ -26,7 +26,14 @@ typedef struct aluno {
 
 
 Turma t = NULL;
-		
+/*DADOS USADOS NA OPÇÃO - EXTRA - DO MENU*/
+Turma teste;
+Aluno novo1;
+Aluno novo2;
+/*---------------------------------------*/
+
+
+
 /*função auxiliar - impressão da lista ligada!*/
 void printLInt(LInt x){
 LInt temp = x;
@@ -184,14 +191,14 @@ Turma aux2 = t;
 int acrescentaAluno(Turma *t, Aluno a){
 Turma *aux = t;
 
-	if(!(aux)){
-		(aux)=&a;
+	if(!(*aux)){
+		(*aux)=&a;
 		return 0;
 	}else{
-		while((aux)->prox){
-			(aux)=(aux)->prox;
+		while((*aux)->prox){
+			aux=&((*aux)->prox);
 		}
-		(aux)->prox = &a;
+		(*aux)->prox = &a;
 		return 0;
 	}
 	return 1;
@@ -258,7 +265,7 @@ lista = NULL;
 
 	system("clear");
 	printf("Escolha ma das opções:\n\n");
-	printf("1 - Exercicio 1a)\n2 - Exercicio 1b)\n3 - Exercicio 1c)\n4 - Exercicio 1d)\n5 - Exercicio 1e)\n6 - Imprimir turma atual\n7 - Exercicio 2b) - Inserir um aluno na turma\n8 - Exercicio 2c) - Procurar um aluno com um dado o numero de aluno\n9 - Imprimir lista ligada de teste\n10 - Exercicio 2d) - Numero de aprovados na turma\n11 - Sair!\nOPCAO:");
+	printf("1 - Exercicio 1a)\n2 - Exercicio 1b)\n3 - Exercicio 1c)\n4 - Exercicio 1d)\n5 - Exercicio 1e)\n6 - Imprimir turma atual\n7 - Exercicio 2b) - Inserir um aluno na turma\n8 - Exercicio 2c) - Procurar um aluno com um dado o numero de aluno\n9 - Imprimir lista ligada de teste\n10 - Exercicio 2d) - Numero de aprovados na turma\n11 - EXTRA - Sobre apontadores\n12 - Sair!\nOPCAO:");
 	scanf("%d",&opt);
 
 	switch(opt){
@@ -414,10 +421,44 @@ lista = NULL;
 		system("clear");
 		printf("O numero de alunos aprovados é de %d alunos\n",numAprovados(t));
 		getchar();
+		main();
 		break;
 
 
 		case(11):
+		system("clear");
+		strcpy(novo1.nome,"Maria");
+		novo1.numero=1; /*Aluno é um acesso direto a uma estrutura de dados, Aluno. Daí o recurso ao (.) ponto para referenciar o parametro da estrutura a aceder*/
+		novo1.nota=15;
+		novo1.prox=NULL;
+		strcpy(novo2.nome,"Manuel");
+		novo2.numero=2; /*Aluno é um acesso direto a uma estrutura de dados, Aluno. Daí o recurso ao (.) ponto para referenciar o parametro da estrutura a aceder*/
+		novo2.nota=6;
+		novo2.prox=NULL;
+		
+		acrescentaAluno(&teste,novo1);
+		acrescentaAluno(&teste,novo2);
+		printf("A turma de teste contem os seguintes alunos:\n");
+		printTurma(teste);
+
+		printf("\n\n'novo1' é do tipo Aluno\n\n");
+		printf("Valor do aluno 'novo1': %d\n",novo1);
+		printf("Valor do aluno '&novo1': %d\n",&novo1);
+		printf("Valor do aluno '*novo1': --->ERRO: invalid type argument of unary ‘*’ (have ‘Aluno {aka struct aluno}’)\n");
+		printf("\n\n\nFunção que imprime a ficha do aluno:\n");
+		printf("\n\nvoid printFichaAluno(Aluno a){\n\tprintf(*Nome: $S*,a.nome);\n\tprintf(*Numero: \\$D*,a.numero);\n\tprintf(*Nota: $F*,a.nota);\n\t}\n\n\n");
+		printf("\n\n\nUsar a função para imprimir a ficha de aluno passando como parametro 'novo1':\n");
+		printFichaAluno(novo1);
+		printf("\nUsar a função para imprimir a ficha de aluno passando como parametro '&novo1':\n");
+		printf("ERRO: error: incompatible type for argument 1 of ‘printFichaAluno’\n");
+		printf("\nUsar a função para imprimir a ficha de aluno passando como parametro '*novo1':\n");
+		printf("ERRO: error: invalid type argument of unary ‘*’ (have ‘Aluno {aka struct aluno}’)");
+		getchar();
+		getchar();
+		main();
+		break;
+
+		case(12):
 		system("clear");
 		exit(0); 
 
