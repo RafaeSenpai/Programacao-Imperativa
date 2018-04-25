@@ -202,6 +202,7 @@ LInt *aux = l; //cria-se um apontador auxiliar, *aux, que vai ficar com o endere
 }
 
 /*exercicio7*/
+/*SEM RECURSO A APONTADORES*/
 LInt insereNodo(int x,LInt l){
 LInt anterior = NULL;
 LInt aux = l;
@@ -235,7 +236,35 @@ LInt aux2 = b;
 	
 }
 
+/*COM RECURSO A APONTADORES*/
+LInt mergeL(LInt a, LInt b){ //<---------------------EXPLICAÇÃO na gravação: PI-Apontadores	e listas ligadas,minuto 00:26:00 
+LInt r,*el; //<--------------------------------------(*el) é um duplo apontador que diz qual é o endereço do 'nodo' que quero alterar
+/*2º*/
+el=&r;//<--------------------------------------------'el' é um endereço de um endereço de uma lista, que diz qual é o proximo 'nodo' 
+//													  que se quer alterar (o 'el' vai dizer a proxima cena a ser alterada)
 
+	while(a!=NULL && b!=NULL){//<-------------------- -Este ciclo vai dizer o que se vai colocar no apontador (só vais executar elementos em 'a' e em  'b') 
+  /*3º*/if(a->valor < b->valor){//					  -Descubrir qual das duas listas ordenadas, 'a' ou 'b', detém o menor valor
+	  		*el=a;//<--------------------------------(*el) fica com o conteudo do 'nodo' a
+	  /*4º*/a=a->prox;//<----------------------------avança-se para o proximo 'nodo'
+		}else{
+			*el=b;
+			b=b->prox;
+		}
+		/*
+		-"O proximo passo a ser feito é atualizar o endereço de memoria para onde está o proximo 'nodo'"
+		-"Quere-se atualizar (*el) mas 'el' tem que ter o endereço de memória onde está o proximo 'nodo', daí &((*el)->prox)*/
+/*5º/6º*/el = &((*el)->prox); //<---------------------'el' fica com o endereço de memoria onde esta guardado o endereco do proximo 'nodo'
+	}
+	//-----------------------------------------------quando o ciclo termina é porque uma das listas chegou ao fim, entao vai-se ao local 
+	//												 que se tem que atualizar e colar o 'a' ou 'b' consoante a lista que acabar primeiro
+	if(a==NULL){
+		*el=b;
+	}else{
+		*el=a;
+	}
+return r;
+}
 
 
 
@@ -254,3 +283,24 @@ LInt aux = l;
         aux=aux->prox;
     }
 }
+
+
+
+LInt parteAmeio (LInt *l){ //------------------rever
+    LInt *tmp, r = *l;
+    int c = length(*l)/2;//tamanho/2 da lista passada
+    tmp = l; //tmp fica com o endereço da lista passada
+    while (c){//enquanto nao tiver percorrido c elementos
+        tmp = &((*tmp)->prox); //tmp fica com o endereço do nodo seguinte
+        //*l = (*l)->prox; //passa-se para o elemento seguinte da lista passada
+        c--;
+    }
+	if (r == *tmp){//se a lista for vazia ou tiver apenas 1 elemento
+	    r = NULL;
+	}else{
+	    *tmp = NULL;
+	}
+	return r;
+}
+
+
