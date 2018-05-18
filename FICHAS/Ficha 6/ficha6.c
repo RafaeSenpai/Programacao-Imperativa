@@ -1,0 +1,8 @@
+#include "ficha6_interface.h"
+
+int main(){
+	menu();
+return 0;
+}
+
+//PERCEBER PORQUÊ QUE A STACK E A QUEUE NÃO SAO ATUALIZADAS CORRETAMENTE E SÓ DEPOIS PASSAR PARA O EXERCICIO 3
