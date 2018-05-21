@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "funcoes_exame10julh2013.h"
 /*Exercicio 1*/
 int elimRep(int v[], int n){

@@ -1,9 +1,12 @@
 /*PROGRAMAÇÃO IMPERATIVA - EXAME DE RECURSO - 10 JULHO 2013*/
 /*Interface*/
+#include <stdio.h>
+#include <stdlib.h>
 #include "funcoes_exame10julh2013.h"
 
 
 /*Estruturas usadas no exame*/
+/*
 typedef struct llint{
 	int valor;
 	struct llint *prox;
@@ -13,13 +16,13 @@ typedef struct abint {
 	int valor;
 	struct abint *esq, *dir;
 } NodoA, *ABint;
-
+*/
 
 
 
 
 /*imprimir arrays - util para o exercicio 1 do exame*/
-void printAray(int v[], int i){
+void printArray(int v[], int i){
 
 	for(int j=0;j<i;j++){
 		if(j==(i-2)){
@@ -112,7 +115,7 @@ ABint new = malloc(sizeof(struct abint));
 /*Adiciona um nodo numa arvore binaria (Será uma ABP)*/
 ABint addNodeABin(ABint a, int x){
 ABint *p = NULL;
-*p = &a;
+p = &a; /*  *p = &a <--ERRADO*/
 	
 	while((*p)){
 		if(x < ((*p)->valor)){
@@ -151,8 +154,16 @@ return a;
 
 
 /*Altura da arvore*/
-int altura(ABint a){
+#define max(a,b) (((a)<(b))?(a):(b))
 
+int altura(ABint a){
+int alt = -1;
+
+	if(a){
+		return alt = 1 + max(altura(a->esq), altura(a->dir));
+	}
+
+	return alt;
 }
 
 /*Imprimir arvore binaria por inorder*/
@@ -209,6 +220,8 @@ int vLLint[10] = {1,6,5,4,9,7,6,4,2,0}; /*valores deste array são usados para p
 int vABin1[11] = {10,15,12,4,43,24,13,121,25,11,3};/*Os vABin's usados no exercicio 3*/
 int vABin2[11] = {10,15,12,4,43,24,13,121,25,11,3};/*vABin2 e vABin1 são iguais*/
 int vABin3[15] = {10,15,12,4,43,99,13,121,25,11,3,7,45,87,2};/*este array é diferente dos dois anteriores!*/
+char origem[10] = "origem.txt"; /*usado no exercicio 4*/
+char destino[11] = "destino.txt";/*usado no exercicio 4*/
 char frase[38] = "ola. passei a programacao. imperativa";/*Esta string é usada no exercicio 5*/
 int xVal = -1; /*Variavel usada no exercicio 7*/
 
@@ -217,15 +230,15 @@ LLint l = malloc(sizeof(struct llint)); //inicia-se aqui a lista ara que nao sej
 l = NULL;
 l = preencheLLint(l,vLLint,10); //preencher a lista ligada previamente antes de qualquer operação com a mesma
 
-ABint a = mallor(sizeof(struct abint));
+ABint a = malloc(sizeof(struct abint));
 a = NULL;
 a = preencheABin(a,vABin1,11);
 
-ABint b = mallor(sizeof(struct abint));
+ABint b = malloc(sizeof(struct abint));
 b = NULL;
 b = preencheABin(b,vABin2,11);
 
-ABint c = mallor(sizeof(struct abint));
+ABint c = malloc(sizeof(struct abint));
 c = NULL;
 c = preencheABin(c,vABin3,15);
 
@@ -236,7 +249,7 @@ c = preencheABin(c,vABin3,15);
 		switch(opt){
 			case(1):
 			printf("Array original:\n");
-			printArray(v);
+			printArray(array,10);
 			printf("NUmero de elementos no array após eliminar repetidos: %d",elimRep(array,10));
 			getchar();
 			main();
@@ -286,10 +299,10 @@ c = preencheABin(c,vABin3,15);
 
 			case(7):
 			printf("A arvore onde serao capturados os valores é a seguinte:\n");
-			printABins(vABin3);
+			printABins(c);
 			printf("Insira o nivel da arvore a que quer fazer a captura dos valores:\n");
 			printf("OBS: Assume-se que a raiz da arvore está ao nivel 1\n");
-			scanf("%d",xVal);
+			scanf("%d",&xVal);
 			printf("Os valores encontrados no nivel %d da arvore 'C' são: ",xVal);
 			printLLigada(nivel(vABin3,xVal));
 			getchar();
@@ -297,8 +310,8 @@ c = preencheABin(c,vABin3,15);
 
 			case(8):
 			printf("Insira um valor inteiro maior u igual a 2: ");
-			scanf("%d",xVal;)
-			pritf("O maior numero primo que é divisor por %d é: %d",xVal,gPrimeDiv(xVal));
+			scanf("%d",&xVal);
+			printf("O maior numero primo que é divisor por %d é: %d",xVal,gPrimeDiv(xVal));
 			getchar();
 			main();
 
