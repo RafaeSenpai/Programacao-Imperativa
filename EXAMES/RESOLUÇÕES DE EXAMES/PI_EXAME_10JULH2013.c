@@ -5,22 +5,6 @@
 #include "funcoes_exame10julh2013.h"
 
 
-/*Estruturas usadas no exame*/
-/*
-typedef struct llint{
-	int valor;
-	struct llint *prox;
-}NodoL, *LLint;
-
-typedef struct abint {
-	int valor;
-	struct abint *esq, *dir;
-} NodoA, *ABint;
-*/
-
-
-
-
 /*imprimir arrays - util para o exercicio 1 do exame*/
 void printArray(int v[], int i){
 
@@ -64,6 +48,7 @@ void printLLigada(LLint a){
 
 
 /*Adiciona um valor a uma lista ligada (previamente a lista ligada que é passada por parametro já se encontra inicializada na main)*/
+/*
 LLint addLLint(int x, LLint a){
 LLint new = malloc(sizeof(struct llint));
 
@@ -74,7 +59,7 @@ LLint new = malloc(sizeof(struct llint));
 
 return new;
 }
-
+*/
 
 
 
@@ -197,8 +182,10 @@ int opt = -1;
 	printf("9 - Sair\n\n");
 	printf("SELECIONE O EXERCICIO DO EXAME A EXECUTAR: ");
 	scanf("%d",&opt);
+	getchar();
+	system("clear");
 
-	if(opt >0 && opt<10){
+	if(opt<0 && opt<10){
 		printf("Opção invalida!\n");
 		getchar();
 		menu();
@@ -215,7 +202,7 @@ return opt;
 /*A Main é responsavel pelo comportamento do programa após a escolha feita pelo utilizador com base na opção escolhida na função menu*/
 int main(){
 int opt = -1;
-int array[10] = {1,2,2,3,4,5,3,3,6,7}; /*usado no exercicio 1*/
+int array[10] = {1,2,3,2,1,4,2,4,5,4};/*usado no exercicio 1*/
 int vLLint[10] = {1,6,5,4,9,7,6,4,2,0}; /*valores deste array são usados para preencher a lista ligada usada no exercicio 2*/
 int vABin1[11] = {10,15,12,4,43,24,13,121,25,11,3};/*Os vABin's usados no exercicio 3*/
 int vABin2[11] = {10,15,12,4,43,24,13,121,25,11,3};/*vABin2 e vABin1 são iguais*/
@@ -250,7 +237,8 @@ c = preencheABin(c,vABin3,15);
 			case(1):
 			printf("Array original:\n");
 			printArray(array,10);
-			printf("NUmero de elementos no array após eliminar repetidos: %d",elimRep(array,10));
+			printf("Numero de elementos no array após eliminar repetidos: %d\n",elimRep(array,10));
+			getchar();
 			getchar();
 			main();
 
@@ -258,6 +246,7 @@ c = preencheABin(c,vABin3,15);
 			printf("Lista ligada avaliada:\n");
 			printLLigada(l);
 			printf("O maior valor armazenado na lista ligada é: %d", maximo(l));
+			getchar();
 			getchar();
 			main();
 
@@ -274,7 +263,7 @@ c = preencheABin(c,vABin3,15);
 			printf("OBS: 1 - As arvores comparadas são iguais;\n0 - As arvores são diferentes.\n");
 			main();
 
-
+/*
 			case(4):
 			if(cp(origem,destino) == 0){
 				printf("A copia do conteudo do ficheiro de origem foi copiada com sucesso para o ficheiro destino!\n");
@@ -284,7 +273,7 @@ c = preencheABin(c,vABin3,15);
 				getchar();
 			}
 			main();	
-
+*/
 			case(5):
 			printf("A frase a ser tratada é:\n %s",frase);
 			printf("Apos a aplicação da função 'capitaliza' a frase fica: %s\n",capitaliza(frase));
@@ -303,8 +292,12 @@ c = preencheABin(c,vABin3,15);
 			printf("Insira o nivel da arvore a que quer fazer a captura dos valores:\n");
 			printf("OBS: Assume-se que a raiz da arvore está ao nivel 1\n");
 			scanf("%d",&xVal);
+			while(xVal >(altura(c))){
+				printf("Altura inválida!\nInsira um nivel até %d!\n",altura(c));
+				scanf("%d",&xVal);
+			}
 			printf("Os valores encontrados no nivel %d da arvore 'C' são: ",xVal);
-			printLLigada(nivel(vABin3,xVal));
+			printLLigada(nivel(c,xVal));
 			getchar();
 			main();
 

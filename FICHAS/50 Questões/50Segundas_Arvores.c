@@ -13,15 +13,6 @@ int alt = -1;
     }
 	return alt;
 }
-//ou
-int altura (ABin a){
-ABin *p = &a;
-int alt = -1;
-    if(*p != NULL){
-        alt = 1 + max(altura((*p)->esq),altura((*p)->dir));
-    }
-	return alt;
-}
 
 
 
